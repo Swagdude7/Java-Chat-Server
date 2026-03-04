@@ -69,9 +69,9 @@ public class DirectoryServer {
 		int id = idGenerator.getAndIncrement();
 		map.put(id, new ClientEntry(id, name, socket.getInetAddress(), port, ((TTL*1000) + System.currentTimeMillis()))); //convert seconds to milliseconds via *1000
 		try(
-				PrintWriter outToClient = new PrintWriter(socket.getOutputStream(), true); //changed from last assignment, all PrintWriters auto-flush to avoid infinite loops
+				PrintWriter outToClient = new PrintWriter(socket.getOutputStream(), true); // all PrintWriters auto-flush to avoid infinite loops
 				) {
-			outToClient.print("ADDED:" + id + ":" + ((TTL*1000) + System.currentTimeMillis()) + "\n"); //Changed from last assignment, ttl now displayed as mills, not seconds
+			outToClient.print("ADDED:" + id + ":" + ((TTL*1000) + System.currentTimeMillis()) + "\n"); // ttl now displayed as mills, not seconds
 		}
 		catch(IOException e) {
 			System.err.println("error in LOGON stream");
